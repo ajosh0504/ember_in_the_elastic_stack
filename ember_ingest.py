@@ -2,6 +2,7 @@ import elasticsearch
 import certifi
 from elasticsearch import Elasticsearch, helpers
 
+# Long list of documents to be inserted into Elasticsearch, showing one as an example
 documents = [
   {
     "_index": "ember_ml",
