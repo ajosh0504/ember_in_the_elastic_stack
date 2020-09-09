@@ -1,1 +1,1 @@
-# ember_in_the_elastic_stack
+Example code to bulk ingest documents into Elasticsearch.
