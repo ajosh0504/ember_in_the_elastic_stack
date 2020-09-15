@@ -706,16 +706,20 @@ url = "YOUR_KIBANA_ENDPOINT_URL"
 api_key = "YOUR_API_KEY"
 api_id = "YOUR_API_ID"
 
+# Initialize Elasticsearch client
 es = Elasticsearch(
         url,
         api_key=(api_id, api_key),
         use_ssl=True,
         ca_certs=certifi.where()
     )
+# Create index "ember_ml"
+es.indices.create(index="ember_ml")
 
+# Bulk ingest documents into Elasticsearch
 try:
     for success, info in helpers.streaming_bulk(es, documents, chunk_size=2500):
         if not success:
             print("A document failed:", info)
 except elasticsearch.ElasticsearchException:
-    print(f"Failed to insert")
+    print("Failed to insert")
